@@ -20,5 +20,6 @@ jobs:
         run: |
           aws cloudformation deploy \
             --template-file cf_template.yaml \
-            --stack-name myadmin-stack-ec2b \
+            --stack-name myadmin-stack-ec2c \
+            --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM \
             --no-fail-on-empty-changeset
