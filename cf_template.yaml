@@ -1,8 +1,12 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description:  EC2 instance in default VPC.
+Description: EC2 instance in default VPC
+
+Parameters:
+  LatestAmiId:
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Default: /aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2
 
 Resources:
-
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -12,11 +16,12 @@ Resources:
           FromPort: 22
           ToPort: 22
           CidrIp: 0.0.0.0/0
+
   EC2Instance:
     Type: AWS::EC2::Instance
     Properties:
       InstanceType: t3.micro
-      ImageId: ami-08d7aabbb50c2c24e
+      ImageId: !Ref LatestAmiId
       SecurityGroupIds:
         - !Ref InstanceSecurityGroup
       Tags:
