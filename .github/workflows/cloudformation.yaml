@@ -20,5 +20,5 @@ jobs:
         run: |
           aws cloudformation deploy \
             --template-file cf_template.yaml \
-            --stack-name myadmin-stack-ec2 \
+            --stack-name myadmin-stack-ec2b \
             --no-fail-on-empty-changeset
